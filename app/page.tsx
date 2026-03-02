@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { matches } from "@/app/data/matches";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-gray-900 px-6 py-12">
@@ -11,19 +14,15 @@ export default function Home() {
         </p>
 
         <div className="space-y-4">
-          <a
-            href="/away/saga"
-            className="block border rounded-lg p-4 hover:bg-gray-100 transition"
-          >
-            サガン鳥栖戦を見る →
-          </a>
-
-          <a
-            href="/away/oita"
-            className="block border rounded-lg p-4 hover:bg-gray-100 transition"
-          >
-            大分トリニータ戦を見る →
-          </a>
+          {matches.map((match) => (
+            <Link
+              key={match.id}
+              href={`/away/${match.id}`}
+              className="block border rounded-lg p-4 hover:bg-gray-100 transition"
+            >
+              {match.opponent} 戦を見る →
+            </Link>
+          ))}
         </div>
       </div>
     </main>
